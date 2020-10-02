@@ -1,7 +1,6 @@
 import { authConstants } from '../actions/constants';
 
 const initState = {
-  name: 'Bhavesh',
 };
 
 export default (state = initState, action) => {

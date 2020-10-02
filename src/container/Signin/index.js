@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../../components/layout/index';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import Input from '../../UI/Input';
 import { login } from '../../actions';
-import {useDispatch} from "react-redux"
+import { useDispatch } from 'react-redux';
 
 const Signin = (props) => {
-  const dispatch = useDispatch()
+  const [email, setEmail] = useState('');
+  const [password, setPasssword] = useState('');
+  const [error, setError] = useState('');
+
+  const dispatch = useDispatch();
   const userLogin = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const user = {
-      email: 'admin@gmail.com',
-      password: '12345',
+      email,
+      password
     };
     dispatch(login(user));
   };
@@ -26,16 +30,18 @@ const Signin = (props) => {
                 <Input
                   label="Email"
                   placecholder="Enter Email"
-                  value=""
+                  value={email}
                   type="email"
-                  onChange={() => {}}
+                  onChange={(e) => setEmail(e.target.value) }
                 />
                 <Input
                   label="Password"
                   placecholder="Enter Password"
-                  value=""
+                  value={password}
                   type="password"
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setPasssword(e.target.value);
+                  }}
                 />
                 <Button variant="primary" type="submit">
                   Submit
